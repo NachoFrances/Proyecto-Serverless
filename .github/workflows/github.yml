@@ -9,6 +9,7 @@ jobs:
   deploy:
     name: Deploy to AWS
     runs-on: ubuntu-latest
+    environment: "Secrets Ignacio"
 
     steps:
     - name: Checkout del código
