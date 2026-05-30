@@ -1,0 +1,53 @@
+service: mi-api-serverless
+frameworkVersion: '3'
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: us-east-1
+  iam:
+    role: arn:aws:iam::245182096201:role/LabRole
+  environment:
+    DB_HOST: ${env:DB_HOST}
+    DB_USER: ${env:DB_USER}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_NAME: ${env:DB_NAME}
+
+functions:
+  login:
+    handler: crud.login
+    events:
+      - http:
+          path: /login
+          method: post
+  createUser:
+    handler: crud.createUser
+    events:
+      - http:
+          path: /create
+          method: post
+  verUser:
+    handler: crud.verUser
+    events:
+      - http:
+          path: /ver
+          method: get
+  modificarUser:
+    handler: crud.modificarUser
+    events:
+      - http:
+          path: /update
+          method: put
+  eliminarUser:
+    handler: crud.eliminarUser
+    events:
+      - http:
+          path: /delete
+          method: delete
+  listUsers:
+    handler: crud.listUsers
+    events:
+      - http:
+          path: /users
+          method: get
