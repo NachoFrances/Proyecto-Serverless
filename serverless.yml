@@ -21,6 +21,12 @@ functions:
       - http:
           path: /login
           method: post
+  listUsers:
+    handler: crud.listUsers
+    events:
+      - http:
+          path: /users
+          method: get
   createUser:
     handler: crud.createUser
     events:
@@ -31,8 +37,8 @@ functions:
     handler: crud.verUser
     events:
       - http:
-          path: /ver
-          method: get
+          path: /ver/{id}
+          method: post
   modificarUser:
     handler: crud.modificarUser
     events:
@@ -45,9 +51,3 @@ functions:
       - http:
           path: /delete
           method: delete
-  listUsers:
-    handler: crud.listUsers
-    events:
-      - http:
-          path: /users
-          method: get
